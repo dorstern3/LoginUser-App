@@ -1,6 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-
+import 'register.dart';
 class Login extends StatefulWidget {
   const Login({super.key});
 
@@ -20,6 +20,7 @@ Future signin() async{
   );
 }
 
+// dispose memory
 @override
   void dispose() {
     _emailController.dispose();
@@ -106,9 +107,9 @@ Future signin() async{
         // sign in button
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
-          child: GestureDetector(
+       child: GestureDetector(
             onTap: signin,
-            child: Container(
+            child:Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
               color: Colors.pink[400],
@@ -130,22 +131,26 @@ Future signin() async{
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('Not a member?',
-            style: TextStyle(
-            fontWeight: FontWeight.bold,
-            fontSize: 16),
-            ),
-            Text(' Register now',
-            style: TextStyle(
-            color: Colors.blue[900],
-            fontWeight: FontWeight.bold,
-            fontSize: 16),
+              Text('Not a member?',
+              style: TextStyle(
+              fontWeight: FontWeight.bold,
+              fontSize: 16),
+              ),
+  
+            GestureDetector(
+              onTap: (){
+            Navigator.pushReplacement(
+            context,MaterialPageRoute(builder: (context) => register()),); 
+            },
+              child: Text(' Register now',
+              style: TextStyle(
+              color: Colors.blue[900],
+              fontWeight: FontWeight.bold,
+              fontSize: 16),
+              ),
             ),
           ],
         )
-
-
-
         ],
         ),
       ) ,
@@ -153,3 +158,9 @@ Future signin() async{
     );
   }
 }
+
+  //  child: GestureDetector(
+  //           onTap: (){
+  //           Navigator.pushReplacement(
+  //           context,MaterialPageRoute(builder: (context) => register()),); 
+  //           },

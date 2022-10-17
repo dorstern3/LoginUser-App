@@ -19,11 +19,16 @@ class _after_loginState extends State<after_login> {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Text('signed in as: ' + user.email!),
+            Center(
+              child: Text('welcome: ' + user.email!,
+              style: TextStyle(
+              fontSize: 30),
+              ),
+            ),
             MaterialButton(onPressed: (){
             FirebaseAuth.instance.signOut();
             },
-            color: Colors.amber,
+            color: Colors.pink[400],
             child: Text('sign out'),
             )
 
