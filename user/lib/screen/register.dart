@@ -6,6 +6,8 @@ import 'package:flutter/material.dart';
 import 'package:user/screen/home.dart';
 import 'package:user/screen/login.dart';
 
+import 'forgotPassword.dart';
+
 
 
 class register extends StatefulWidget {
@@ -147,7 +149,36 @@ bool passwordConfirmed(){
             ),
           ),
         ),
-        SizedBox(height: 20),
+        SizedBox(height: 15),
+
+        // Forget Password
+       Padding(
+         padding: const EdgeInsets.symmetric(horizontal: 25.0),
+         child: Row(
+          mainAxisAlignment: MainAxisAlignment.end,
+           children: [
+             GestureDetector(
+              onTap: () {
+              Navigator.push(
+              context,
+              MaterialPageRoute(
+              builder: (context) {
+               return forgotPassword();
+              },
+            ),
+            );
+            },
+               child: Text('Forget Password?',
+               style: TextStyle(
+                      color: Colors.blue[900],
+                      fontWeight: FontWeight.bold,
+                      fontSize: 16),
+               ),
+             ),
+           ],
+         ),
+       ),
+       SizedBox(height: 15),
 
         // Register button
         Padding(

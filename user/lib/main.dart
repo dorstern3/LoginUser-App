@@ -12,7 +12,7 @@ void main() async {
 
 // Task
 // 1. verify username
-// 2.
+// 2. navbar
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

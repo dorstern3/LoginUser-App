@@ -31,7 +31,7 @@ Future signIn() async{
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Color.fromARGB(255, 51, 141, 187),
+      backgroundColor: Color.fromARGB(255, 79, 178, 231),
       body: SafeArea(
       child: Center(
         child: Column(
