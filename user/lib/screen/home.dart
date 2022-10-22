@@ -1,14 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:user/screen/login.dart';
 
-class after_login extends StatefulWidget {
-  const after_login({super.key});
+class home extends StatefulWidget {
+  const home({super.key});
 
   @override
-  State<after_login> createState() => _after_loginState();
+  State<home> createState() => homeState();
 }
 
-class _after_loginState extends State<after_login> {
+class homeState extends State<home> {
 
   final user =  FirebaseAuth.instance.currentUser!;
 
@@ -27,12 +28,14 @@ class _after_loginState extends State<after_login> {
             ),
             MaterialButton(onPressed: (){
             FirebaseAuth.instance.signOut();
+            Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => Login()),
+            );
             },
             color: Colors.pink[400],
             child: Text('sign out'),
             )
-
-
           ],
         ),),
     );

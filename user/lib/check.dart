@@ -1,7 +1,8 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screen/login.dart';
-import 'screen/after_login.dart';
+import 'package:user/screen/register.dart';
+import 'screen/home.dart';
 
 class check extends StatelessWidget {
   const check({super.key});
@@ -13,7 +14,7 @@ class check extends StatelessWidget {
       stream: FirebaseAuth.instance.authStateChanges(),
       builder: (context, snapshot) {
         if(snapshot.hasData) {
-          return after_login();
+          return home();
         } else {
           return Login();
         }
@@ -22,3 +23,4 @@ class check extends StatelessWidget {
       );
   }
 }
+

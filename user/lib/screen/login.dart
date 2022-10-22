@@ -13,7 +13,7 @@ class _LoginState extends State<Login> {
 final _emailController = TextEditingController();
 final _passwordController = TextEditingController();
 
-Future signin() async{
+Future signIn() async{
   await FirebaseAuth.instance.signInWithEmailAndPassword(
   email: _emailController.text.trim(),
   password: _passwordController.text.trim(),
@@ -37,7 +37,8 @@ Future signin() async{
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center, 
           children: [
-          // open text
+           // Title
+
           Column(
             children: [
               Text("Welcome to my",
@@ -55,7 +56,7 @@ Future signin() async{
           ),
           SizedBox(height: 20,),
 
-        // email or username
+        // Email or Username
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Container(
@@ -63,7 +64,6 @@ Future signin() async{
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(12)
             ),
-            
             child: Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: TextField(
@@ -79,7 +79,7 @@ Future signin() async{
         ),
         SizedBox(height: 20),
 
-        // password
+        // Password
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
           child: Container(
@@ -87,7 +87,6 @@ Future signin() async{
             color: Colors.grey[300],
             borderRadius: BorderRadius.circular(12)
             ),
-            
             child: Padding(
               padding: const EdgeInsets.only(left: 15.0),
               child: TextField(
@@ -104,11 +103,11 @@ Future signin() async{
         ),
         SizedBox(height: 20),
 
-        // sign in button
+        // Login button
         Padding(
           padding: const EdgeInsets.symmetric(horizontal: 25.0),
        child: GestureDetector(
-            onTap: signin,
+            onTap: signIn,
             child:Container(
               padding: EdgeInsets.all(20),
               decoration: BoxDecoration(
@@ -127,7 +126,7 @@ Future signin() async{
         ),
         SizedBox(height: 30),
 
-        // register now
+        // Register now
         Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
@@ -136,11 +135,12 @@ Future signin() async{
               fontWeight: FontWeight.bold,
               fontSize: 16),
               ),
-  
             GestureDetector(
               onTap: (){
-            Navigator.pushReplacement(
-            context,MaterialPageRoute(builder: (context) => register()),); 
+           Navigator.push(
+              context,
+              MaterialPageRoute(builder: (context) => register()),
+            );
             },
               child: Text(' Register now',
               style: TextStyle(
@@ -158,9 +158,3 @@ Future signin() async{
     );
   }
 }
-
-  //  child: GestureDetector(
-  //           onTap: (){
-  //           Navigator.pushReplacement(
-  //           context,MaterialPageRoute(builder: (context) => register()),); 
-  //           },
