@@ -13,6 +13,9 @@ void main() async {
 // Task
 // 1. verify username
 // 2. navbar
+// 3. phone sms
+// 4. facbook and google login
+
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

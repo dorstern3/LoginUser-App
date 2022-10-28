@@ -22,8 +22,8 @@ class homeState extends State<home> {
           children: [
             Center(
               child: Text('welcome: ' + user.email!,
-              style: TextStyle(
-              fontSize: 30),
+               textAlign: TextAlign.center,
+              style: TextStyle(fontSize: 30),
               ),
             ),
             MaterialButton(onPressed: (){
