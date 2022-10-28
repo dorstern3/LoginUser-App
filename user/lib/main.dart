@@ -14,7 +14,7 @@ void main() async {
 // 1. verify username
 // 2. navbar
 // 3. phone sms
-// 4. facbook and google login
+// 4. facebook and google login
 
 
 class MyApp extends StatelessWidget {
