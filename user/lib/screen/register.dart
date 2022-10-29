@@ -1,9 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter/src/widgets/container.dart';
-import 'package:flutter/src/widgets/framework.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screen/home.dart';
-import 'package:user/screen/login.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
 
 class register extends StatefulWidget {
   const register({super.key});
@@ -17,6 +15,7 @@ class _registerState extends State<register> {
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmpasswordController = TextEditingController();
+  final _fullNameController = TextEditingController();
 
 // dispose memory
   @override
@@ -24,20 +23,43 @@ class _registerState extends State<register> {
     _emailController.dispose();
     _passwordController.dispose();
     _confirmpasswordController.dispose();
+    _fullNameController.dispose();
     super.dispose();
   }
 
   Future signUp() async {
     // check if password == confirmpassword
     if (passwordConfirmed()) {
+      // create user
       await FirebaseAuth.instance.createUserWithEmailAndPassword(
         email: _emailController.text.trim(),
         password: _passwordController.text.trim(),
       );
+
+      //add user deatails
+      addUserDeatails(
+        _fullNameController.text.trim(),
+        _emailController.text.trim(),
+        // _passwordController.text.trim(),
+      );
+
+
+
+
+
+
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => home()));
     }
   }
+
+Future addUserDeatails(String fullName , String email) async{
+ await FirebaseFirestore.instance.collection('users').add({
+  'Full Name': fullName,
+  'Email': email,
+  // 'Password': password,
+ });
+}
 
 // return True or False
   bool passwordConfirmed() {
@@ -73,6 +95,28 @@ class _registerState extends State<register> {
               SizedBox(
                 height: 20,
               ),
+
+              // Full Name
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 25.0),
+                child: Container(
+                  decoration: BoxDecoration(
+                      color: Color(0xffEEEEEE),
+                      border: Border.all(color: Color(0xffA460ED)),
+                      borderRadius: BorderRadius.circular(12)),
+                  child: Padding(
+                    padding: const EdgeInsets.only(left: 15.0),
+                    child: TextField(
+                      controller:  _fullNameController,
+                      decoration: InputDecoration(
+                        border: InputBorder.none,
+                        hintText: 'Full Name',
+                      ),
+                    ),
+                  ),
+                ),
+              ),
+              SizedBox(height: 20),
 
               // Email or Username
               Padding(

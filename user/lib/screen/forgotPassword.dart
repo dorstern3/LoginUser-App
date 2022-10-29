@@ -1,5 +1,3 @@
-import 'dart:math';
-
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
@@ -12,11 +10,11 @@ class forgotPassword extends StatefulWidget {
 
 class _forgotPasswordState extends State<forgotPassword> {
   // text Controllers
-  final _emailController1 = TextEditingController();
+  final _emailControllerReset = TextEditingController();
 
   @override
   void dispose() {
-    _emailController1.dispose();
+    _emailControllerReset.dispose();
     // TODO: implement dispose
     super.dispose();
   }
@@ -24,7 +22,7 @@ class _forgotPasswordState extends State<forgotPassword> {
   Future passwordReset() async {
     try {
       await FirebaseAuth.instance
-          .sendPasswordResetEmail(email: _emailController1.text.trim());
+          .sendPasswordResetEmail(email: _emailControllerReset.text.trim());
       showDialog(
         context: context,
         builder: (context) {
@@ -87,7 +85,7 @@ class _forgotPasswordState extends State<forgotPassword> {
               child: Padding(
                 padding: const EdgeInsets.only(left: 15.0),
                 child: TextField(
-                  controller: _emailController1,
+                  controller: _emailControllerReset,
                   decoration: InputDecoration(
                     border: InputBorder.none,
                     hintText: 'Phone Number',

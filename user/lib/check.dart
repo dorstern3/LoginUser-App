@@ -1,7 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:user/screen/login.dart';
-import 'package:user/screen/register.dart';
 import 'screen/home.dart';
 
 class check extends StatelessWidget {
