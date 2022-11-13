@@ -2,6 +2,7 @@ import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'register.dart';
 import 'forgotPassword.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
 class Login extends StatefulWidget {
   const Login({super.key});
@@ -160,7 +161,23 @@ class _LoginState extends State<Login> {
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
+
+              // Facebook Button
+              SignInButton(
+                Buttons.Facebook,
+                text: "Sign in with Facebook",
+                onPressed: () {},
+              ),
+              SizedBox(height: 10),
+
+              // Google Button
+              SignInButton(
+                Buttons.Google,
+                text: "Sign in with Google",
+                onPressed: () {},
+              ),
+              SizedBox(height: 20),
 
               // Register now
               Row(
