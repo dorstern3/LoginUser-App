@@ -1,0 +1,6 @@
+<!-- facebook -->
+<resources>
+<string name="facebook_app_id">users</string>
+<string name="fb_login_protocol_scheme">467239418733001</string>
+<string name="facebook_client_token">124521c7b4c297b4f33355467ed29e30</string>
+</resources>
