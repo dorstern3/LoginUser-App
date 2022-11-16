@@ -1,5 +1,6 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:user/facebookLogin.dart';
 import 'register.dart';
 import 'forgotPassword.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -167,7 +168,12 @@ class _LoginState extends State<Login> {
               SignInButton(
                 Buttons.Facebook,
                 text: "Sign in with Facebook",
-                onPressed: () {},
+                onPressed: () {
+                   Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => FacebookLogin()),
+                      );
+                },
               ),
               SizedBox(height: 10),
 

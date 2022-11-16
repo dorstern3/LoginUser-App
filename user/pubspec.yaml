@@ -41,7 +41,10 @@ dependencies:
   firebase_core: ^2.1.1
   firebase_storage: ^11.0.3
   flutter_signin_button: ^2.0.0
+  # facebook
   flutter_facebook_auth: ^5.0.6
+  flutter_secure_storage: ^6.0.0
+  cached_network_image: ^3.2.2
 
 
 dev_dependencies:

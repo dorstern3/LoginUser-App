@@ -1,12 +1,11 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.user">
 
-  <!-- facebook -->
-  
-<uses-permission android:name="android.permission.INTERNET"/>
-
-
-
+    <!-- facebook -->
+    
+     <uses-permission android:name="android.permission.INTERNET"/>
+     <!-- <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/> -->
+        
    <application
         android:label="user"
         android:name="${applicationName}"
@@ -38,12 +37,11 @@
             android:name="flutterEmbedding"
             android:value="2" />
 
-            <!-- facebook -->
+        <!-- facebook -->
         <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
    	    <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-    
-    <!-- facebook -->
-    
+
+ <!-- facebook -->
     <activity android:name="com.facebook.FacebookActivity"
         android:configChanges=
                 "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
