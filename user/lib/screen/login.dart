@@ -171,7 +171,7 @@ class _LoginState extends State<Login> {
                 onPressed: () {
                    Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => FacebookLogin()),
+                        MaterialPageRoute(builder: (context) => facebookLogin()),
                       );
                 },
               ),
