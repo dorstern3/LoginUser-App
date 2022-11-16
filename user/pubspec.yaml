@@ -45,6 +45,8 @@ dependencies:
   flutter_facebook_auth: ^5.0.6
   flutter_secure_storage: ^6.0.0
   cached_network_image: ^3.2.2
+  #google
+  # google_sign_in: ^5.4.2
 
 
 dev_dependencies:

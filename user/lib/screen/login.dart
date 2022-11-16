@@ -1,6 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:user/facebookLogin.dart';
+import 'package:user/googleLogin.dart';
 import 'register.dart';
 import 'forgotPassword.dart';
 import 'package:flutter_signin_button/flutter_signin_button.dart';
@@ -181,7 +182,12 @@ class _LoginState extends State<Login> {
               SignInButton(
                 Buttons.Google,
                 text: "Sign in with Google",
-                onPressed: () {},
+                onPressed: () {
+                  //  Navigator.push(
+                  //       context,
+                  //       MaterialPageRoute(builder: (context) => googleLogin()),
+                  //     );
+                },
               ),
               SizedBox(height: 20),
 
