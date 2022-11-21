@@ -14,6 +14,7 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
+
 // text Controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
@@ -32,6 +33,15 @@ class _LoginState extends State<Login> {
     _passwordController.dispose();
     super.dispose();
   }
+
+//bottomNavigationBar
+int currentIndex=0;
+final screens = {
+Login(),
+register(),
+};
+
+
 
   @override
   Widget build(BuildContext context) {
@@ -215,11 +225,39 @@ class _LoginState extends State<Login> {
                     ),
                   ),
                 ],
-              )
-            ],
+              ),
+            ],  
           ),
         ),
       ),
+      //screens[currentIndex],
+      bottomNavigationBar: BottomNavigationBar(
+        currentIndex: currentIndex,
+        onTap: (index) => setState(()=> currentIndex = index),
+        iconSize: 30,
+        type: BottomNavigationBarType.fixed,
+        backgroundColor: Color(0xff9FC9F3),
+        selectedFontSize: 20,
+        selectedItemColor: Color(0xffA460ED),
+        unselectedFontSize: 18,
+        unselectedItemColor: Color(0xffF07DEA),
+        showUnselectedLabels: true,
+        
+     items:[
+      BottomNavigationBarItem(
+        icon: Icon(Icons.login),
+        label: 'Login',
+        backgroundColor: Colors.green,
+        ),
+
+        BottomNavigationBarItem(
+        icon: Icon(Icons.app_registration),
+        label: 'Register',
+        backgroundColor: Colors.blue,
+        ), 
+     ],
+      ),
+      
     );
   }
 }

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:user/check.dart';
+import 'package:user/screen/splash.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -10,10 +11,13 @@ void main() async {
 
 // Task
 // 1. verify username
-// 2. navbar
-// 3. phone sms
-// 4. facebook and google login
-// 5. home page change to user name
+// 2. phone sms
+// 3. home page change to user name
+// 4. ***push notifications
+
+// Try again:
+// 1. navbar -> screens[currentIndex]
+// 2. facebook and google login
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
@@ -22,7 +26,8 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: check(),
+      home: splash(),
+      // check(),
     );
   }
 }
