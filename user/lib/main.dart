@@ -12,12 +12,12 @@ void main() async {
 // Task
 // 1. verify username
 // 2. phone sms
-// 3. home page change to user name
-// 4. ***push notifications
+// 4. push notifications + 10 sec
 
 // Try again:
 // 1. navbar -> screens[currentIndex]
 // 2. facebook and google login
+// 3. home page change to user name
 
 class MyApp extends StatelessWidget {
   const MyApp({super.key});

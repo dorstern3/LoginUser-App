@@ -1,6 +1,7 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:user/getUsername.dart';
 import 'package:user/screen/login.dart';
 
 class home extends StatefulWidget {
@@ -15,7 +16,23 @@ class homeState extends State<home> {
   final CollectionReference users =
       FirebaseFirestore.instance.collection('users');
 
+// document IDs
+  List<String> docIDs = [];
+  //get document IDs
+  Future getDocid() async {
+    await FirebaseFirestore.instance.collection('users').get().then(
+          (snapshot) => snapshot.docs.forEach((element) {
+            print(element.reference);
+          }),
+        );
+  }
+
   @override
+  void initState() {
+    getDocid();
+    super.initState();
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: Color(0xff9FC9F3),
@@ -35,6 +52,8 @@ class homeState extends State<home> {
                           textAlign: TextAlign.center,
                           style: TextStyle(fontSize: 30),
                         ),
+                        // Username display
+                        // getUser(documentId: toString()),
                         Text(
                           user.email!,
                           textAlign: TextAlign.center,

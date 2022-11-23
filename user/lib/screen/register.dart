@@ -40,14 +40,7 @@ class _registerState extends State<register> {
       addUserDeatails(
         _fullNameController.text.trim(),
         _emailController.text.trim(),
-        // _passwordController.text.trim(),
       );
-
-
-
-
-
-
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => home()));
     }
@@ -57,7 +50,6 @@ Future addUserDeatails(String fullName , String email) async{
  await FirebaseFirestore.instance.collection('users').add({
   'Full Name': fullName,
   'Email': email,
-  // 'Password': password,
  });
 }
 
