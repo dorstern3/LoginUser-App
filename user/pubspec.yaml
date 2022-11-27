@@ -51,9 +51,10 @@ dependencies:
   #splash
   animated_splash_screen: ^1.3.0
   #notifications
-  flutter_local_notifications: ^12.0.4
+  # flutter_local_notifications: ^12.0.4
   firebase_messaging: ^14.1.1
- 
+  firebase_analytics: ^10.0.6
+
 
 
 

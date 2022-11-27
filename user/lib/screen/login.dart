@@ -42,7 +42,6 @@ register(),
 };
 
 
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -75,7 +74,7 @@ register(),
                 height: 20,
               ),
 
-              // Email or Username
+              // Email 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -89,7 +88,7 @@ register(),
                       controller: _emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Email or Username',
+                        hintText: 'Email',
                       ),
                     ),
                   ),
@@ -201,7 +200,7 @@ register(),
               ),
               SizedBox(height: 20),
 
-              // Register now
+              // Register Now
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
@@ -230,6 +229,7 @@ register(),
           ),
         ),
       ),
+      // bottomNavigationBar
       //screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,

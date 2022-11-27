@@ -110,7 +110,7 @@ Future addUserDeatails(String fullName , String email) async{
               ),
               SizedBox(height: 20),
 
-              // Email or Username
+              // Email 
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -124,7 +124,7 @@ Future addUserDeatails(String fullName , String email) async{
                       controller: _emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Email or Username',
+                        hintText: 'Email',
                       ),
                     ),
                   ),
