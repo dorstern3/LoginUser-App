@@ -7,7 +7,7 @@
 - ### Android phone:
 
 ## Description:
-A user application with the features:
+User application with the features:
 - Registration and login with username and password.
 - Recover password with email.
 - Log in with Facebook.
