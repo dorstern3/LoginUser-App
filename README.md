@@ -7,3 +7,6 @@
 - ### Android phone:
 
 ## Description:
+
+## Install:
+-
