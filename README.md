@@ -1,6 +1,5 @@
 # LoginUser
-- **Front &amp; Back :** Html &amp; CSS &amp; JS
-
+- **Front &amp; Back :** Flutter
 - **Back:** Django
 
 - **DB:** Firebase
