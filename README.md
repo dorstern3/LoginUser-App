@@ -1,5 +1,5 @@
 # LoginUser
-- **Front &amp; Back :** Flutter
+- **Front &amp; Back:** Flutter
 
 - **DB:** Firebase
 
