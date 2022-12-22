@@ -9,4 +9,4 @@
 ## Description:
 
 ## Install:
--
+- Run flutter pub get.
