@@ -2,6 +2,6 @@
 <resources>
     <string name="app_name">users</string>
     <string name="facebook_app_id">467239418733001</string>
+     <string name="fb_login_protocol_scheme">fb467239418733001</string>
     <string name="facebook_client_token">76ffd0133a842c991c025d29f539ef5d</string>
-    <string name="fb_login_protocol_scheme">fb467239418733001</string>
 </resources>

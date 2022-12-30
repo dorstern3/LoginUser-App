@@ -2,9 +2,6 @@
 // import 'package:flutter/src/widgets/container.dart';
 // import 'package:flutter/src/widgets/framework.dart';
 // import 'package:flutter/material.dart';
-// import '../functions/check.dart';
-
-
 
 // class splash extends StatefulWidget {
 //   const splash({super.key});
@@ -39,7 +36,7 @@
 //       backgroundColor: Colors.black,
 //       splashTransition: SplashTransition.fadeTransition,
 //       animationDuration: Duration(seconds: 2),
-//       nextScreen: check(),
+//       nextScreen: login(),
 //       splashIconSize: 250,
 //     );
 //   }
