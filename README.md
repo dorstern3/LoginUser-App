@@ -4,7 +4,7 @@
 - **DB:** Firebase
 
 ## View:
-- ### Android phone:
+- ### Android device:
 
 ## Description:
 User application with the features:
