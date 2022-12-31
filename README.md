@@ -14,6 +14,9 @@ User application with the features:
 - Login with Google.
 - Displaying the username after logging in (on the home page).
 
+ֳ##Platforms:
+- [] A
+
 ## Install:
 - flutter pub get
 
