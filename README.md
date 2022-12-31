@@ -15,7 +15,7 @@ User application with the features:
 - Displaying the username after logging in (on the home page).
 
 ֳ##Platforms:
-- [X] A
+- [X] Android
 
 ## Install:
 - flutter pub get
