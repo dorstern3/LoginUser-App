@@ -10,9 +10,9 @@
 User application with the features:
 - Registration and login with username and password.
 - Recover password with email.
-- Log in with Facebook.
+- Login with Facebook.
 - Login with Google.
-- Displaying the username after logging in (on the home page).
+- Displaying the username after Login (on the home page).
 
 ## Platforms:
 - [X] Android
