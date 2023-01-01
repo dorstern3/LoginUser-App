@@ -12,7 +12,7 @@ User application with the features:
 - Recover password with email.
 - Login with Facebook.
 - Login with Google.
-- Displaying the username after Login (on the home page).
+- Displaying the username after login (on the home page).
 
 ## Platforms:
 - [X] Android
