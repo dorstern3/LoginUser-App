@@ -57,7 +57,7 @@ class FirebaseAuthMethods {
         UserCredential userCredential =
             await _auth.signInWithCredential(credential);
 
-        // navigate to home page 
+        //navigate to home page 
         Navigator.pushReplacement(
             context, MaterialPageRoute(builder: (context) => home()));
       }
@@ -79,6 +79,7 @@ class FirebaseAuthMethods {
       // navigate to home page
       Navigator.pushReplacement(
           context, MaterialPageRoute(builder: (context) => home()));
+          
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }

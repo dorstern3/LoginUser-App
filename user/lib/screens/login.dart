@@ -24,7 +24,7 @@ class _LoginState extends State<Login> {
       password: _passwordController.text.trim(),
       context: context,
     );
-    // navigate to home page
+    //navigate to home page
                Navigator.pushReplacement(
            context, MaterialPageRoute(builder: (context) => home()));
   }
@@ -36,12 +36,12 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-// //bottomNavigationBar
-// int currentIndex=0;
-// final screens = {
-// Login(),
-// register(),
-// };
+//bottomNavigationBar
+int currentIndex=0;
+final screens = {
+Login(),
+register(),
+};
 
   @override
   Widget build(BuildContext context) {
@@ -229,8 +229,8 @@ class _LoginState extends State<Login> {
       // bottomNavigationBar
       //screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
-        // currentIndex: currentIndex,
-        // onTap: (index) => setState(()=> currentIndex = index),
+        currentIndex: currentIndex,
+        onTap: (index) => setState(()=> currentIndex = index),
         iconSize: 30,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xff9FC9F3),

@@ -40,16 +40,13 @@ class _registerState extends State<register> {
      password: _passwordController.text.trim(),
      context: context,
     );
+    
 
- //add user deatails
+ //add user deatails to firebase collection 'users' 
       addUserDeatails(
         _fullNameController.text.trim(),
         _emailController.text.trim(),
       );
-      // navigate to home page
-               Navigator.pushReplacement(
-           context, MaterialPageRoute(builder: (context) => home()));
-
     }  
    }
 
@@ -59,7 +56,10 @@ class _registerState extends State<register> {
         _confirmpasswordController.text.trim()) {
       return true;
     } else {
+      // change text
+      showSnackBar(context, 'The passwords are not equal');
       return false;
+      
     }
   }
 
@@ -69,6 +69,10 @@ Future addUserDeatails(String fullName , String email) async{
   'Full Name': fullName,
   'Email': email,
  });
+
+ // navigate to home page
+               Navigator.pushReplacement(
+           context, MaterialPageRoute(builder: (context) => home()));
 }
 
 

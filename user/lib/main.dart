@@ -15,11 +15,9 @@ runApp(const MyApp());
    
 
 // Task:
-// 1. send message passwordConfig
-// 2. navbar -> screens[currentIndex]
-// 3. database firebase -> not work
-// 4. home page change to user name
-// 5. push notifications + 10 sec delay
+// 1. navbar -> screens[currentIndex]
+// 2. home page change to user name
+// 3. push notifications + 10 sec delay
 
 
  
