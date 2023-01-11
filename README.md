@@ -1,4 +1,4 @@
-# LoginUser
+# LoginUser-App
 - **Front &amp; Back:** Flutter
 
 - **DB:** Firebase
