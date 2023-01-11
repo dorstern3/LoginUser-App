@@ -8,11 +8,11 @@
 
 ## Description:
 User application with the features:
-- Registration and login with username and password.
+- Registration and login with email and password.
+- Registration and Login with Facebook.
+- Registration and Login with Google.
 - Recover password with email.
-- Login with Facebook.
-- Login with Google.
-- Displaying the username after login (on the home page).
+- Display the username after login (on the home page).
 
 ## Platforms:
 - [X] Android
