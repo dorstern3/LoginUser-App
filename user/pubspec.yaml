@@ -50,6 +50,8 @@ dependencies:
   google_sign_in: ^5.4.2
   #splash
   animated_splash_screen: ^1.3.0
+  #userData
+  provider: ^6.0.5
   #notifications
   # flutter_local_notifications: ^12.0.4
   # firebase_messaging: ^14.1.1

@@ -1,26 +1,26 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:user/screens/home.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:user/services/firebaseAuthMethods.dart';
-
+import '../provider/userData.dart';
 import '../utils/showSnackBar.dart';
 
-class register extends StatefulWidget {
-  const register({super.key});
+class Register extends StatefulWidget {
+  const Register({super.key});
 
   @override
-  State<register> createState() => _registerState();
+  State<Register> createState() => _RegisterState();
 }
 
-class _registerState extends State<register> {
-  // text Controllers
+class _RegisterState extends State<Register> {
+  // Text Controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
   final _confirmpasswordController = TextEditingController();
   final _fullNameController = TextEditingController();
 
-// dispose memory
   @override
   void dispose() {
     _emailController.dispose();
@@ -30,56 +30,51 @@ class _registerState extends State<register> {
     super.dispose();
   }
 
-  // Register Email
-  void signUp() async{
-    // check if password = confirmpassword
-    if (passwordConfirmed()){
-      // create user
-    FirebaseAuthMethods(FirebaseAuth.instance).RegisterWithEmail(
-    email: _emailController.text.trim(),
-     password: _passwordController.text.trim(),
-     context: context,
-    );
-    
+  // Register with Email
+  void signUp() async {
+    // Check if password = confirmpassword
+    if (passwordConfirmed()) {
+      // Create user
+      FirebaseAuthMethods(FirebaseAuth.instance).RegisterWithEmail(
+        email: _emailController.text.trim(),
+        password: _passwordController.text.trim(),
+        context: context,
+      );
 
- //add user deatails to firebase collection 'users' 
+      // Add user deatails to firebase collection 'users'
       addUserDeatails(
         _fullNameController.text.trim(),
         _emailController.text.trim(),
       );
-    }  
-   }
+    }
+  }
 
-   //return True or False
+  // Return True or False
   bool passwordConfirmed() {
     if (_passwordController.text.trim() ==
         _confirmpasswordController.text.trim()) {
       return true;
     } else {
-      // change text
       showSnackBar(context, 'The passwords are not equal');
       return false;
-      
     }
   }
 
-//  add user deatails function
-Future addUserDeatails(String fullName , String email) async{
- await FirebaseFirestore.instance.collection('users').add({
-  'Full Name': fullName,
-  'Email': email,
- });
+// Add user deatails function
+  Future addUserDeatails(String fullName, String email) async {
+    await FirebaseFirestore.instance.collection('users').add({
+      'Full Name': fullName,
+      'Email': email,
+    });
 
- // navigate to home page
-               Navigator.pushReplacement(
-           context, MaterialPageRoute(builder: (context) => home()));
-}
-
-
-
+    // Navigate to home page
+    Navigator.pushReplacement(
+        context, MaterialPageRoute(builder: (context) => Home()));
+  }
 
   @override
   Widget build(BuildContext context) {
+    final firebaseData = Provider.of<FirebaseAuthData>(context, listen: false);
     return Scaffold(
       backgroundColor: Color(0xff9FC9F3),
       body: SafeArea(
@@ -114,7 +109,7 @@ Future addUserDeatails(String fullName , String email) async{
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
                     child: TextField(
-                      controller:  _fullNameController,
+                      controller: _fullNameController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
                         hintText: 'Full Name',
@@ -125,7 +120,7 @@ Future addUserDeatails(String fullName , String email) async{
               ),
               SizedBox(height: 20),
 
-              // Email 
+              // Email
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
@@ -197,7 +192,19 @@ Future addUserDeatails(String fullName , String email) async{
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 100.0),
                 child: GestureDetector(
-                  onTap: signUp,
+                  onTap: () {
+                    firebaseData.userData['name'] =
+                        _fullNameController.text.trim();
+                    FirebaseAuth.instance.createUserWithEmailAndPassword(
+                        email: _emailController.text.trim(),
+                        password: _passwordController.text.trim());
+                    Future.delayed(Duration(seconds: 2), () {
+                      Navigator.pushReplacement(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) => const Home()));
+                    });
+                  },
                   child: Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
@@ -244,7 +251,7 @@ Future addUserDeatails(String fullName , String email) async{
           ),
         ),
       ),
-      resizeToAvoidBottomInset: false, // set it to false
+      resizeToAvoidBottomInset: false,
     );
   }
 }

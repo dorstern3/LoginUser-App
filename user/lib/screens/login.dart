@@ -14,19 +14,23 @@ class Login extends StatefulWidget {
 }
 
 class _LoginState extends State<Login> {
-// text Controllers
+// Text Controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
 
-  void signIn() {
+  void signIn() async {
     FirebaseAuthMethods(FirebaseAuth.instance).loginWithEmail(
       email: _emailController.text.trim(),
       password: _passwordController.text.trim(),
       context: context,
     );
-    //navigate to home page
-               Navigator.pushReplacement(
-           context, MaterialPageRoute(builder: (context) => home()));
+
+// Check if user login successfully
+    if (await FirebaseAuth.instance.currentUser != null) {
+      // Navigate to home page
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Home()));
+    }
   }
 
   @override
@@ -36,12 +40,12 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-//bottomNavigationBar
-int currentIndex=0;
-final screens = {
-Login(),
-register(),
-};
+//BottomNavigationBar
+  int currentIndex = 0;
+  final screens = {
+    Login(),
+    Register(),
+  };
 
   @override
   Widget build(BuildContext context) {
@@ -132,7 +136,7 @@ register(),
                           context,
                           MaterialPageRoute(
                             builder: (context) {
-                              return forgotPassword();
+                              return ForgotPassword();
                             },
                           ),
                         );
@@ -209,7 +213,7 @@ register(),
                     onTap: () {
                       Navigator.push(
                         context,
-                        MaterialPageRoute(builder: (context) => register()),
+                        MaterialPageRoute(builder: (context) => Register()),
                       );
                     },
                     child: Text(
@@ -230,7 +234,7 @@ register(),
       //screens[currentIndex],
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: currentIndex,
-        onTap: (index) => setState(()=> currentIndex = index),
+        onTap: (index) => setState(() => currentIndex = index),
         iconSize: 30,
         type: BottomNavigationBarType.fixed,
         backgroundColor: Color(0xff9FC9F3),
@@ -239,7 +243,6 @@ register(),
         unselectedFontSize: 18,
         unselectedItemColor: Color(0xffF07DEA),
         showUnselectedLabels: true,
-
         items: [
           BottomNavigationBarItem(
             icon: Icon(Icons.login),

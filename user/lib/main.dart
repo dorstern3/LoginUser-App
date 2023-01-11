@@ -1,32 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:user/screens/login.dart';
-import 'package:user/screens/register.dart';
+import 'package:provider/provider.dart';
+import 'package:user/provider/userData.dart';
 import 'package:user/screens/splash.dart';
 import 'services/firebase_options.dart';
 
-void main() async {
-  WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp(
-      options: DefaultFirebaseOptions.currentPlatform,
-  );
-runApp(const MyApp());
-}
-   
-
 // Task:
 // 1. navbar -> screens[currentIndex]
-// 2. home page change to user name
-// 3. push notifications + 10 sec delay
+void main() async {
+  // Firebase
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // Run Provider
+  runApp(const AppState());
+}
 
+// Provider
+class AppState extends StatelessWidget {
+  const AppState({super.key});
 
- 
+  @override
+  Widget build(BuildContext context) {
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => FirebaseAuthData(),
+        )
+      ],
+      // Run App
+      child: const MyApp(),
+    );
+  }
+}
+
+// Run App
 class MyApp extends StatelessWidget {
   const MyApp({super.key});
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      home: Login(),
+      home: Splash(),
     );
   }
 }

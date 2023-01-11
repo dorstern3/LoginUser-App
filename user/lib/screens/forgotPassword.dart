@@ -1,15 +1,15 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class forgotPassword extends StatefulWidget {
-  const forgotPassword({super.key});
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
 
   @override
-  State<forgotPassword> createState() => _forgotPasswordState();
+  State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _forgotPasswordState extends State<forgotPassword> {
-  // text Controllers
+class _ForgotPasswordState extends State<ForgotPassword> {
+  // Text Controllers
   final _emailControllerReset = TextEditingController();
 
   @override
@@ -18,6 +18,7 @@ class _forgotPasswordState extends State<forgotPassword> {
     super.dispose();
   }
 
+// Reset password function
   Future passwordReset() async {
     try {
       await FirebaseAuth.instance
@@ -95,7 +96,7 @@ class _forgotPasswordState extends State<forgotPassword> {
           ),
           SizedBox(height: 20),
 
-          //  Reset Password Button
+          // Reset Password Button
           Container(
             child: MaterialButton(
               onPressed: passwordReset,

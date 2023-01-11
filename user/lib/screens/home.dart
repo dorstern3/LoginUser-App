@@ -1,28 +1,29 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
+import 'package:provider/provider.dart';
 import 'package:user/screens/login.dart';
+import '../provider/userData.dart';
 
-class home extends StatefulWidget {
-  const home({super.key});
+class Home extends StatefulWidget {
+  const Home({super.key});
 
   @override
-  State<home> createState() => homeState();
+  State<Home> createState() => HomeState();
 }
 
-class homeState extends State<home> {
-  //final user = FirebaseAuth.instance.currentUser!;
+class HomeState extends State<Home> {
+// Database collection firebase
   final CollectionReference users =
       FirebaseFirestore.instance.collection('users');
 
   @override
-  void initState() {
-    super.initState();
-  }
-
   Widget build(BuildContext context) {
+    // Varible for firebase
+    final firebaseData = Provider.of<FirebaseAuthData>(context, listen: false);
+
     return Scaffold(
-      backgroundColor: Color(0xff9FC9F3),
+      backgroundColor: const Color(0xff9FC9F3),
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
@@ -32,32 +33,76 @@ class homeState extends State<home> {
                 children: [
                   Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 50.0),
-                    child: Row(
+                    child: Column(
                       children: [
-                        Text(
-                          'Hey,  ',
-                          textAlign: TextAlign.center,
-                          style: TextStyle(fontSize: 30),
-                        ),
-                        // Username display
-                        // getUser(documentId: toString()),
-                        Text(
-                          'user email name',
-                          //user.email!,
-                          textAlign: TextAlign.center,
-                          style: TextStyle(
-                            fontSize: 30,
-                            color: Color(0xffA460ED),
-                          ),
-                        ),
+                        FirebaseAuth.instance.currentUser?.displayName ==
+                                null // if the user has no name it will show a loading circle
+                            ? FutureBuilder(
+                                future: FirebaseAuth.instance.currentUser
+                                    ?.updateDisplayName(// update user name
+                                        firebaseData.userData['name']),
+                                builder: (context, snapshot) {
+                                  // if user login from Register Page successfully
+                                  if (snapshot.connectionState ==
+                                      ConnectionState.done) {
+                                    return Row(
+                                      mainAxisAlignment:
+                                          MainAxisAlignment.center,
+                                      children: [
+                                        Text(
+                                          'Hey, ',
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            fontSize: 30,
+                                          ),
+                                        ),
+                                        Text(
+                                          '${FirebaseAuth.instance.currentUser?.displayName} ',
+                                          textAlign: TextAlign.center,
+                                          style: const TextStyle(
+                                            fontSize: 30,
+                                            color: Color(0xffA460ED),
+                                          ),
+                                        ),
+                                      ],
+                                    );
+                                  } else {
+                                    // if user login failed
+                                    return const CircularProgressIndicator(
+                                        color: Colors.black);
+                                  }
+                                })
+                            // if user login from Login Page/Facebook/Google successfully
+                            : Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    'Hey, ',
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 30,
+                                    ),
+                                  ),
+                                  Text(
+                                    '${FirebaseAuth.instance.currentUser?.displayName!}',
+                                    textAlign: TextAlign.center,
+                                    style: const TextStyle(
+                                      fontSize: 30,
+                                      color: Color(0xffA460ED),
+                                    ),
+                                  ),
+                                ],
+                              ),
                       ],
                     ),
                   ),
-                  SizedBox(height: 20),
-                  Padding(
-                    padding: const EdgeInsets.symmetric(horizontal: 20.0),
+                  const SizedBox(height: 10),
+
+                  // Thank you text
+                  const Padding(
+                    padding: EdgeInsets.symmetric(horizontal: 10.0),
                     child: Text(
-                      'Thank you for subscribing to my first app, see you in the next app.',
+                      'Thank you for subscribing to my user app, see you in the next app.',
                       textAlign: TextAlign.center,
                       style: TextStyle(fontSize: 25),
                     ),
@@ -65,17 +110,19 @@ class homeState extends State<home> {
                 ],
               ),
             ),
-            SizedBox(height: 20),
+            const SizedBox(height: 20),
+
+            // Sign out button
             MaterialButton(
               onPressed: () {
                 FirebaseAuth.instance.signOut();
                 Navigator.push(
                   context,
-                  MaterialPageRoute(builder: (context) => Login()),
+                  MaterialPageRoute(builder: (context) => const Login()),
                 );
               },
-              color: Color(0xffF07DEA),
-              child: Text(
+              color: const Color(0xffF07DEA),
+              child: const Text(
                 'sign out',
                 style: TextStyle(fontSize: 20),
               ),

@@ -9,7 +9,7 @@ class FirebaseAuthMethods {
   final FirebaseAuth _auth;
   FirebaseAuthMethods(this._auth);
 
-//Register Email
+// Register with Email
   Future<void> RegisterWithEmail({
     required String email,
     required String password,
@@ -21,13 +21,12 @@ class FirebaseAuthMethods {
         password: password,
       );
     } on FirebaseAuthException catch (e) {
-      // if you want to display your own custom error message
       showSnackBar(
           context, e.message!); // Displaying the usual firebase error message
     }
   }
 
-  //Login Email
+  //Login with Email
   Future<void> loginWithEmail({
     required String email,
     required String password,
@@ -57,9 +56,9 @@ class FirebaseAuthMethods {
         UserCredential userCredential =
             await _auth.signInWithCredential(credential);
 
-        //navigate to home page 
+        // Navigate to home page
         Navigator.pushReplacement(
-            context, MaterialPageRoute(builder: (context) => home()));
+            context, MaterialPageRoute(builder: (context) => Home()));
       }
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
@@ -76,10 +75,9 @@ class FirebaseAuthMethods {
 
       await _auth.signInWithCredential(facebookAuthCredential);
 
-      // navigate to home page
+      // Navigate to home page
       Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => home()));
-          
+          context, MaterialPageRoute(builder: (context) => Home()));
     } on FirebaseAuthException catch (e) {
       showSnackBar(context, e.message!);
     }
