@@ -40,13 +40,6 @@ class _LoginState extends State<Login> {
     super.dispose();
   }
 
-//BottomNavigationBar
-  int currentIndex = 0;
-  final screens = {
-    Login(),
-    Register(),
-  };
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -229,32 +222,6 @@ class _LoginState extends State<Login> {
             ],
           ),
         ),
-      ),
-      // bottomNavigationBar
-      //screens[currentIndex],
-      bottomNavigationBar: BottomNavigationBar(
-        currentIndex: currentIndex,
-        onTap: (index) => setState(() => currentIndex = index),
-        iconSize: 30,
-        type: BottomNavigationBarType.fixed,
-        backgroundColor: Color(0xff9FC9F3),
-        selectedFontSize: 20,
-        selectedItemColor: Color(0xffA460ED),
-        unselectedFontSize: 18,
-        unselectedItemColor: Color(0xffF07DEA),
-        showUnselectedLabels: true,
-        items: [
-          BottomNavigationBarItem(
-            icon: Icon(Icons.login),
-            label: 'Login',
-            backgroundColor: Colors.green,
-          ),
-          BottomNavigationBarItem(
-            icon: Icon(Icons.app_registration),
-            label: 'Register',
-            backgroundColor: Colors.blue,
-          ),
-        ],
       ),
     );
   }
