@@ -5,8 +5,6 @@ import 'package:user/provider/userData.dart';
 import 'package:user/screens/splash.dart';
 import 'services/firebase_options.dart';
 
-// Task:
-// 1. navbar -> screens[currentIndex]
 void main() async {
   // Firebase
   WidgetsFlutterBinding.ensureInitialized();
