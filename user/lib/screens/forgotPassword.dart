@@ -1,24 +1,24 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 
-class forgotPassword extends StatefulWidget {
-  const forgotPassword({super.key});
+class ForgotPassword extends StatefulWidget {
+  const ForgotPassword({super.key});
 
   @override
-  State<forgotPassword> createState() => _forgotPasswordState();
+  State<ForgotPassword> createState() => _ForgotPasswordState();
 }
 
-class _forgotPasswordState extends State<forgotPassword> {
-  // text Controllers
+class _ForgotPasswordState extends State<ForgotPassword> {
+  // Text Controllers
   final _emailControllerReset = TextEditingController();
 
   @override
   void dispose() {
     _emailControllerReset.dispose();
-    // TODO: implement dispose
     super.dispose();
   }
 
+// Reset password function
   Future passwordReset() async {
     try {
       await FirebaseAuth.instance
@@ -60,12 +60,12 @@ class _forgotPasswordState extends State<forgotPassword> {
             child: Column(
               children: [
                 Text(
-                  'Enter your Phone Number',
+                  'Enter your Email and we will send',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
                 Text(
-                  'and we will send you a password link',
+                  'you a password reset link',
                   textAlign: TextAlign.center,
                   style: TextStyle(fontSize: 20),
                 ),
@@ -74,7 +74,7 @@ class _forgotPasswordState extends State<forgotPassword> {
           ),
           SizedBox(height: 20),
 
-          // Phone Number
+          // Email
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 25.0),
             child: Container(
@@ -88,7 +88,7 @@ class _forgotPasswordState extends State<forgotPassword> {
                   controller: _emailControllerReset,
                   decoration: InputDecoration(
                     border: InputBorder.none,
-                    hintText: 'Phone Number',
+                    hintText: 'Email',
                   ),
                 ),
               ),
@@ -96,7 +96,7 @@ class _forgotPasswordState extends State<forgotPassword> {
           ),
           SizedBox(height: 20),
 
-          //  Reset Password Button
+          // Reset Password Button
           Container(
             child: MaterialButton(
               onPressed: passwordReset,

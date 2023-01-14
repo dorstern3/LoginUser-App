@@ -1,33 +1,47 @@
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
-import 'package:user/check.dart';
+import 'package:provider/provider.dart';
+import 'package:user/provider/userData.dart';
+import 'package:user/screens/splash.dart';
+import 'services/firebase_options.dart';
 
-
-
+// Task:
+// 1. navbar -> screens[currentIndex]
 void main() async {
+  // Firebase
   WidgetsFlutterBinding.ensureInitialized();
-  await Firebase.initializeApp();
-  runApp(const MyApp());
+  await Firebase.initializeApp(
+    options: DefaultFirebaseOptions.currentPlatform,
+  );
+  // Run Provider
+  runApp(const AppState());
 }
 
-// Task
-// 1. verify username
-// 2. navbar
-// 3. phone sms
-// 4. facebook and google login
-
-
-class MyApp extends StatelessWidget {
-  const MyApp({super.key});
+// Provider
+class AppState extends StatelessWidget {
+  const AppState({super.key});
 
   @override
   Widget build(BuildContext context) {
-    return MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: check(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(
+          create: (_) => FirebaseAuthData(),
+        )
+      ],
+      // Run App
+      child: const MyApp(),
     );
   }
 }
 
-
- 
+// Run App
+class MyApp extends StatelessWidget {
+  const MyApp({super.key});
+  Widget build(BuildContext context) {
+    return MaterialApp(
+      debugShowCheckedModeBanner: false,
+      home: Splash(),
+    );
+  }
+}

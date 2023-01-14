@@ -1,74 +1,43 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
-import 'package:user/screen/home.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:user/screens/home.dart';
+import '../services/firebaseAuthMethods.dart';
+import 'register.dart';
+import 'forgotPassword.dart';
+import 'package:flutter_signin_button/flutter_signin_button.dart';
 
-class register extends StatefulWidget {
-  const register({super.key});
+class Login extends StatefulWidget {
+  const Login({super.key});
 
   @override
-  State<register> createState() => _registerState();
+  State<Login> createState() => _LoginState();
 }
 
-class _registerState extends State<register> {
-  // text Controllers
+class _LoginState extends State<Login> {
+// Text Controllers
   final _emailController = TextEditingController();
   final _passwordController = TextEditingController();
-  final _confirmpasswordController = TextEditingController();
-  final _fullNameController = TextEditingController();
 
-// dispose memory
+  void signIn() async {
+    FirebaseAuthMethods(FirebaseAuth.instance).loginWithEmail(
+      email: _emailController.text.trim(),
+      password: _passwordController.text.trim(),
+      context: context,
+    );
+
+// Check if user login successfully
+    if (await FirebaseAuth.instance.currentUser != null) {
+      // Navigate to home page
+      Navigator.pushReplacement(
+          context, MaterialPageRoute(builder: (context) => Home()));
+    }
+  }
+
   @override
   void dispose() {
     _emailController.dispose();
     _passwordController.dispose();
-    _confirmpasswordController.dispose();
-    _fullNameController.dispose();
     super.dispose();
-  }
-
-  Future signUp() async {
-    // check if password == confirmpassword
-    if (passwordConfirmed()) {
-      // create user
-      await FirebaseAuth.instance.createUserWithEmailAndPassword(
-        email: _emailController.text.trim(),
-        password: _passwordController.text.trim(),
-      );
-
-      //add user deatails
-      addUserDeatails(
-        _fullNameController.text.trim(),
-        _emailController.text.trim(),
-        // _passwordController.text.trim(),
-      );
-
-
-
-
-
-
-      Navigator.pushReplacement(
-          context, MaterialPageRoute(builder: (context) => home()));
-    }
-  }
-
-Future addUserDeatails(String fullName , String email) async{
- await FirebaseFirestore.instance.collection('users').add({
-  'Full Name': fullName,
-  'Email': email,
-  // 'Password': password,
- });
-}
-
-// return True or False
-  bool passwordConfirmed() {
-    if (_passwordController.text.trim() ==
-        _confirmpasswordController.text.trim()) {
-      return true;
-    } else {
-      return false;
-    }
   }
 
   @override
@@ -84,9 +53,16 @@ Future addUserDeatails(String fullName , String email) async{
               Column(
                 children: [
                   Text(
-                    "Register",
+                    "Welcome to my",
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 35),
+                  ),
+                  SizedBox(
+                    height: 5,
+                  ),
+                  Text(
+                    "User App",
                     style: TextStyle(
-                        color: Color(0xffF07DEA),
+                        color: Color(0xffA460ED),
                         fontWeight: FontWeight.bold,
                         fontSize: 40),
                   ),
@@ -96,35 +72,13 @@ Future addUserDeatails(String fullName , String email) async{
                 height: 20,
               ),
 
-              // Full Name
+              // Email
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
                 child: Container(
                   decoration: BoxDecoration(
                       color: Color(0xffEEEEEE),
-                      border: Border.all(color: Color(0xffA460ED)),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
-                    child: TextField(
-                      controller:  _fullNameController,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Full Name',
-                      ),
-                    ),
-                  ),
-                ),
-              ),
-              SizedBox(height: 20),
-
-              // Email or Username
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xffEEEEEE),
-                      border: Border.all(color: Color(0xffA460ED)),
+                      border: Border.all(color: Color(0xffF07DEA)),
                       borderRadius: BorderRadius.circular(12)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
@@ -132,7 +86,7 @@ Future addUserDeatails(String fullName , String email) async{
                       controller: _emailController,
                       decoration: InputDecoration(
                         border: InputBorder.none,
-                        hintText: 'Email or Username',
+                        hintText: 'Email',
                       ),
                     ),
                   ),
@@ -146,7 +100,7 @@ Future addUserDeatails(String fullName , String email) async{
                 child: Container(
                   decoration: BoxDecoration(
                       color: Color(0xffEEEEEE),
-                      border: Border.all(color: Color(0xffA460ED)),
+                      border: Border.all(color: Color(0xffF07DEA)),
                       borderRadius: BorderRadius.circular(12)),
                   child: Padding(
                     padding: const EdgeInsets.only(left: 15.0),
@@ -163,43 +117,50 @@ Future addUserDeatails(String fullName , String email) async{
               ),
               SizedBox(height: 20),
 
-              // Confirm Password
+              // Forget Password
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 25.0),
-                child: Container(
-                  decoration: BoxDecoration(
-                      color: Color(0xffEEEEEE),
-                      border: Border.all(color: Color(0xffA460ED)),
-                      borderRadius: BorderRadius.circular(12)),
-                  child: Padding(
-                    padding: const EdgeInsets.only(left: 15.0),
-                    child: TextField(
-                      controller: _confirmpasswordController,
-                      obscureText: true,
-                      decoration: InputDecoration(
-                        border: InputBorder.none,
-                        hintText: 'Confirm Password',
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                            builder: (context) {
+                              return ForgotPassword();
+                            },
+                          ),
+                        );
+                      },
+                      child: Text(
+                        'Forget Password?',
+                        style: TextStyle(
+                            color: Colors.black,
+                            fontWeight: FontWeight.bold,
+                            fontSize: 16),
                       ),
                     ),
-                  ),
+                  ],
                 ),
               ),
-              SizedBox(height: 15),
+              SizedBox(height: 20),
 
-              // Register Button
+              // Login Button
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 100.0),
                 child: GestureDetector(
-                  onTap: signUp,
+                  onTap: signIn,
                   child: Container(
                     padding: EdgeInsets.all(15),
                     decoration: BoxDecoration(
-                      color: Color(0xffF07DEA),
+                      color: Color(0xffA460ED),
                       borderRadius: BorderRadius.circular(20),
                     ),
                     child: Center(
                       child: Text(
-                        'Sign up',
+                        'Sign in',
                         style: TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -209,35 +170,59 @@ Future addUserDeatails(String fullName , String email) async{
                   ),
                 ),
               ),
-              SizedBox(height: 30),
+              SizedBox(height: 20),
 
-              // Login now
+              // Facebook Button
+              SignInButton(
+                Buttons.Facebook,
+                text: "Sign in with Facebook",
+                onPressed: () {
+                  FirebaseAuthMethods(FirebaseAuth.instance)
+                      .facebookLogin(context);
+                },
+              ),
+              SizedBox(height: 10),
+
+              // Google Button
+              SignInButton(
+                Buttons.Google,
+                text: "Sign in with Google",
+                onPressed: () {
+                  FirebaseAuthMethods(FirebaseAuth.instance)
+                      .googleLogin(context);
+                },
+              ),
+              SizedBox(height: 20),
+
+              // Register Now
               Row(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   Text(
-                    'I am already register!',
+                    'Not a member?',
                     style: TextStyle(fontWeight: FontWeight.bold, fontSize: 16),
                   ),
                   GestureDetector(
                     onTap: () {
-                      Navigator.pop(context);
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(builder: (context) => Register()),
+                      );
                     },
                     child: Text(
-                      ' Login',
+                      ' Register now',
                       style: TextStyle(
-                          color: Color(0xffA460ED),
+                          color: Color(0xffF07DEA),
                           fontWeight: FontWeight.bold,
                           fontSize: 16),
                     ),
                   ),
                 ],
-              )
+              ),
             ],
           ),
         ),
       ),
-      resizeToAvoidBottomInset: false, // set it to false
     );
   }
 }
