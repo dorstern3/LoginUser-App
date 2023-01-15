@@ -81,6 +81,7 @@ class _RegisterState extends State<Register> {
         child: Center(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
+            //backgroundColor: Color(0xff9FC9F3),
             children: [
               // Title
               Column(

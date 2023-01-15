@@ -42,7 +42,7 @@ dependencies:
   firebase_storage: ^11.0.3
   flutter_signin_button: ^2.0.0
   firebase_analytics: ^10.0.6
-  # facebook
+  #facebook
   flutter_facebook_auth: ^5.0.6
   flutter_secure_storage: ^6.0.0
   #google
