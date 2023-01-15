@@ -20,12 +20,4 @@ User application with the features:
 ## Install:
 - flutter pub get
 - Run flutter run -v (for apk file).
-<<<<<<< HEAD
 
-
-
-
-
-
-=======
->>>>>>> alpha
